@@ -16,6 +16,8 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+/*Custom libraries*/
+import entities.Person;
 
 
 public class Implementer {
@@ -132,5 +134,80 @@ public class Implementer {
         return "Success!";
     }
     
+    public ArrayList<Person> getPersonTest(){
+        
+        ArrayList<Person> persons = new ArrayList();
+        
+        try{
+            Context ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("parkDataSource");
+            Connection con = ds.getConnection();
+            
+            Statement myStmnt = con.createStatement();
+            ResultSet myRs = myStmnt.executeQuery("select * from Persons");
+            while(myRs.next()){
+                Person pers = new Person();
+                
+                
+                pers.setLastName(myRs.getString("last_name"));
+                pers.setMidName(myRs.getString("middle_name"));
+                pers.setName(myRs.getString("first_name"));
+                pers.setAddress(myRs.getString("address"));
+                pers.setDocNumber(myRs.getString("document_number"));
+                pers.setOrg(myRs.getString("organisation"));
+                pers.setPhone(Long.parseLong(myRs.getString("phone_number")));
+                
+                persons.add(pers);
+            }
+            
+            con.close();
+            myStmnt.close();
+            myRs.close();
+        }catch(Exception ex){
+            persons.add(new Person("Error!"));
+            return persons;
+        }
+        
+        return persons;
+    }
+    
+    
+    public List<String> getAddr(){
+    
+         ArrayList<String> addr = new ArrayList();
+        
+        try{
+            Context ctx = new InitialContext();
+            DataSource ds = (DataSource)ctx.lookup("parkDataSource");
+            Connection con = ds.getConnection();
+            
+            Statement myStmnt = con.createStatement();
+            ResultSet myRs = myStmnt.executeQuery("select * from Persons");
+            while(myRs.next()){
+                Person pers = new Person();
+                
+                pers.setLastName(myRs.getString("last_name"));
+                pers.setMidName(myRs.getString("middle_name"));
+                pers.setName(myRs.getString("first_name"));
+                pers.setAddress(myRs.getString("address"));
+                pers.setDocNumber(myRs.getString("document_number"));
+                pers.setOrg(myRs.getString("organisation"));
+                pers.setPhone(Long.parseLong(myRs.getString("phone_number")));
+                
+                addr.add(pers.toString());
+
+            }
+            
+            con.close();
+            myStmnt.close();
+            myRs.close();
+        }catch(Exception ex){
+            addr.add("Error");
+            return addr;
+        }
+        
+        return addr;
+    
+    } 
     
 }

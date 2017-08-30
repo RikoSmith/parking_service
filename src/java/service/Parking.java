@@ -1,5 +1,6 @@
 package service;
 
+import entities.Person;
 import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -23,6 +24,10 @@ public class Parking {
     public List<String> getPersons(){
         return impl.getPersonsImpl();
     }
+    
+    public List<Person> getPersonsTest(){
+        return impl.getPersonTest();
+    }
 
     public String addPerson(String l_name, String m_name, String name, String address, String doc, String org, long phone){
         return impl.addPersonImpl(l_name, m_name, name, address, doc, org, phone);
@@ -34,6 +39,10 @@ public class Parking {
     
     public String addLot(int lnum, int type){
         return impl.addLotImpl(lnum, type);
+    }
+    
+    public List<String> AddrTest(){
+        return impl.getAddr();
     }
 
 }
