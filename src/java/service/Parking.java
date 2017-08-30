@@ -21,11 +21,7 @@ public class Parking {
     Implementer impl = new Implementer();
     
     @WebMethod
-    public List<String> getPersons(){
-        return impl.getPersonsImpl();
-    }
-    
-    public List<Person> getPersonsTest(){
+    public List<Person> getPersons(){
         return impl.getPersonTest();
     }
 

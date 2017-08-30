@@ -72,7 +72,7 @@ public class Person {
         this.address = address;
     }
     
-    public String getAdress(){
+    public String getAddress(){
         return this.address;
     }
     

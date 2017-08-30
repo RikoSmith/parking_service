@@ -148,7 +148,7 @@ public class Implementer {
             while(myRs.next()){
                 Person pers = new Person();
                 
-                
+                pers.setId(Integer.parseInt(myRs.getString("id")));
                 pers.setLastName(myRs.getString("last_name"));
                 pers.setMidName(myRs.getString("middle_name"));
                 pers.setName(myRs.getString("first_name"));
